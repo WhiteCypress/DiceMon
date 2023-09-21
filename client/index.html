@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>The chat & game thing</title>
+    <link rel="icon" href="img/favicon.png">
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+  <body>
+    <div class="controls-wrapper">
+      <div id="user-controls">
+        <div class="centered-wrapper">
+          Username:
+          <input id="username" autocomplete="off" title="username">
+          <button id="joingame" disabled>JOIN</button>
+          <button id="leavegame" disabled>LEAVE</button>
+        </div>
+      </div>
+      <ul id="events"></ul>
+      <div class="controls">
+        <div class="chat-wrapper">
+          <form id="chat-form">
+            <input id="chat" autocomplete="off" title="chat"/>
+            <button id="say">Say</button>
+          </form>
+        </div>
+      </div>
+      <div>
+        <div>
+          CURRENT PLAYERS:
+        </div>
+        <ul id="current-players"></ul>
+      </div>
+    </div>
+
+    <div class="game-wrapper">GAME GOES HERE ONE DAY</div>
+
+    <div class="builder-wrapper">
+      BUILDER HERE ONE DAY
+
+      <ul id="mon-list">
+      </ul>
+      <button id="add-mon-button">
+        ADD
+      </button>
+      <button id="verify-team-button">
+        VERIFY TEAM
+      </button>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="src/client.js"></script>
+    <script src="src/mon.js"></script>
+    <script src="src/html.js"></script>
+  </body>
+</html>
