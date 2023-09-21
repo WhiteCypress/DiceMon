@@ -1,3 +1,6 @@
+// a list of mons
+var team = [];
+
 const log = (text, color = '') => {
   const parent = document.querySelector('#events');
   const el = document.createElement('li');
@@ -25,7 +28,7 @@ const onJoinGameClicked = (sock, secret) => (e) => {
   
   const username = document.querySelector('#username');
   const name = username.value;
-  sock.emit('joingame', name, secret);
+  sock.emit('joingame', name, secret, team);
 };
 
 const onLeaveGameClicked = (sock, secret) => (e) => {
@@ -113,7 +116,9 @@ const onVerifyTeamClicked = () => (e) => {
       .querySelector('#joingame')
       .disabled = false;
 
-    log('Your team is valid.', 'green')
+    log('Your team is valid.', 'green');
+
+    team = mon_list;
   }
 };
 

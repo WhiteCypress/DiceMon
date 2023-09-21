@@ -27,6 +27,7 @@ const newSecret = () => {
 io.on('connection', (sock) => {
     // emit welcome message to new user
     sock.emit('chat', 'you are connected');
+    sock.emit('update-player', players);
 
     // get new hidden id for new user.
     secret = newSecret();
@@ -35,14 +36,16 @@ io.on('connection', (sock) => {
     // when receiving chat, return chat to all users to display
     sock.on('chat', (text) => io.emit('chat', text));
 
-    sock.on('joingame', (name, s) => {
+    sock.on('joingame', (name, s, team) => {
         if (players.length < 2 && !secrets.includes(s)) {            
             players.push(name);
             secrets.push(s);
+            teams.push(team);
 
             sock.emit('join-success');
             io.emit('chat', 'player ' + name + ' joined the game.');
             io.emit('update-player', players);
+            sock.emit('chat', team.length)
         }
         else {
             sock.emit('chat', 'Unable to join game, there are already 2 players: ' + players);
