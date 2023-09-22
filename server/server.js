@@ -1,6 +1,8 @@
 const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
+const shared_classes = require('./shared_classes');
+const battle = require('./battle');
 
 const app = express();
 
@@ -23,6 +25,16 @@ const newSecret = () => {
     return s;
 }
 
+const convertTeam = (team) => {
+    var newTeam = [];
+
+    team.forEach((mon) => {
+        newTeam.push(new shared_classes.Mon(mon));
+    })
+
+    return newTeam;
+}
+
 // on new user connection
 io.on('connection', (sock) => {
     // emit welcome message to new user
@@ -37,15 +49,21 @@ io.on('connection', (sock) => {
     sock.on('chat', (text) => io.emit('chat', text));
 
     sock.on('joingame', (name, s, team) => {
-        if (players.length < 2 && !secrets.includes(s)) {            
+        if (players.length < 2 && !secrets.includes(s)) {     
+
+            var mon_team = convertTeam(team);  
+
             players.push(name);
             secrets.push(s);
-            teams.push(team);
+            teams.push(mon_team);
 
             sock.emit('join-success');
             io.emit('chat', 'player ' + name + ' joined the game.');
             io.emit('update-player', players);
-            sock.emit('chat', team.length)
+
+            mon_team.forEach((mon) => {
+                sock.emit('chat', mon.toString())
+            })
         }
         else {
             sock.emit('chat', 'Unable to join game, there are already 2 players: ' + players);
@@ -59,6 +77,7 @@ io.on('connection', (sock) => {
 
             players.splice(index, 1);
             secrets.splice(index, 1);
+            teams.splice(index, 1);
 
             sock.emit('leave-success');
             io.emit('chat', 'player ' + name + ' left the game.');

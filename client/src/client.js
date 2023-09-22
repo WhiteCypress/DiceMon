@@ -119,6 +119,11 @@ const onVerifyTeamClicked = () => (e) => {
     log('Your team is valid.', 'green');
 
     team = mon_list;
+
+    // TODO: remove here. This prints all the mons.
+    team.forEach((mon) => {
+      log(mon.toString());
+    });
   }
 };
 

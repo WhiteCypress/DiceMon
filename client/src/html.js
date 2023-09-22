@@ -12,26 +12,26 @@ const mon_html =
         ATK: 
         <input class="atk-input"></input>
     </div>
-    <div>
-        <div>
+    <div class="skills-wrapper">
+        <div class="skill-wrapper">
             COST: 
             <input class="cost-input"></input>
             POW: 
             <input class="pow-input"></input>
         </div>
-        <div>
+        <div class="skill-wrapper">
             COST: 
             <input class="cost-input"></input>
             POW: 
             <input class="pow-input"></input>
         </div>
-        <div>
+        <div class="skill-wrapper">
             COST: 
             <input class="cost-input"></input>
             POW: 
             <input class="pow-input"></input>
         </div>
-        <div>
+        <div class="skill-wrapper">
             COST: 
             <input class="cost-input"></input>
             POW: 

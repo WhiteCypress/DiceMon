@@ -14,7 +14,11 @@ class Mon {
     }
 
     toString = () => {
-        return "NAME: " + name + "\nHP: " + this.hp + "\nATK: " + this.atk + "\n" + this.skills;
+        var skillsString = "";
+        this.skills.forEach((skill) => {
+            skillsString += skill.power + "/" + skill.cost + " | ";
+        })
+        return "NAME: " + this.name + ", HP: " + this.hp + ", ATK: " + this.atk + ", " + skillsString;
     }
 
     verify = () => {

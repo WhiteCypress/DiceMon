@@ -92,6 +92,18 @@ canvas {
   flex-direction: column;
 }
 
+.skills-wrapper {
+  margin: 4%;
+}
+
+.skill-wrapper {
+  margin: 1%;
+}
+
+.cost-input, .pow-input {
+  width: 50px;
+}
+
 #events {
   height: 150px;
   list-style: none;
